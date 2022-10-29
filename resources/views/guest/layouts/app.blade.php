@@ -21,6 +21,34 @@
 
 </head>
 
+<style>
+  #tiles>span {
+    width: 70px;
+    font: 36px "Comfortaa", cursive;
+    font-weight: 700;
+    text-align: center;
+    color: #e8127a;
+    position: relative;
+  }
+
+  #tiles .test {
+    font: 30px 'Droid Sans', Arial, sans-serif;
+    text-align: center;
+    color: green;
+    position: relative;
+  }
+
+  #countdown .labels {
+    width: 100%;
+    height: 25px;
+    text-align: center;
+    position: absolute;
+    bottom: 8px;
+  }
+
+  /* e8127a */
+</style>
+
 <body>
 
   @include('guest.layouts.header')
@@ -39,9 +67,10 @@
   <script src="{{ asset('guest/js/countdown.min_2.js') }}"></script>
   <script src="{{ asset('guest/js/bootstrap-popover-x.min_2.js') }}"></script>
   <script src="{{ asset('guest/js/amd_2.js') }}"></script>
+  <script src="{{ asset('vendors/jquery.countdown-2.1.0/jquery.countdown.min.js') }}"></script>
   <script src="{{ asset('guest/js/nice-select_2.js') }}"></script>
-  <script src="{{ asset('guest/js/main_2.js') }}"></script>
-  <!-- <script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/simplePagination.js/1.6/jquery.simplePagination.js"></script>
+  <script>
     $(document).ready(function() {
       var hours, minutes, seconds;
       $("#owl").owlCarousel({
@@ -56,6 +85,41 @@
       });
 
       $.ajax({
+        url: `http://localhost/fantra2/public/api/result/getcountdown`,
+        method: "GET",
+        dataType: "JSON",
+        async: true,
+        success: response => {
+          let currentResultTime = response.data.out_at
+
+          let resultTime = new Date(currentResultTime * 1000).toLocaleString('en-EN');
+
+          $("#countdown")
+            .countdown(resultTime, function(event) {
+              days = event.strftime('%d');
+              hours = event.strftime('%H');
+              minutes = event.strftime('%M');
+              seconds = event.strftime('%S');
+              $('#tiles').html("<span>" + days + " </span><span class>Days </span><span>" + hours + " : </span><span>" + minutes + " : </span><span>" + seconds + "</span>")
+            });
+
+          $('#result_datetime').html(`<h1>NEXT RESULT:<br> ${
+            new Date(response.data.out_at * 1000).toLocaleString('en-EN', {
+              weekday: 'long',
+              year: 'numeric',
+              month: 'long',
+              day: '2-digit',
+              hours24: true,
+              hour: '2-digit',
+              minute: '2-digit',
+            })
+            }
+            (GMT -4)</h1>`);
+        }
+
+      })
+
+      $.ajax({
         url: `http://localhost/miami/public/api/result/current`,
         method: "GET",
         dataType: "JSON",
@@ -63,19 +127,23 @@
           let currentResult = response.data.number
           let resultNumbers = currentResult.split('')
 
-          $('#result_datetime').text(`WINNING NUMBER: ${
-            new Date(response.data.out_at * 1000).toLocaleString(0, {
+          $('#result_time').text(`${
+            new Date(response.data.out_at * 1000).toLocaleString('en-EN', {
+              weekday: 'long',
               year: 'numeric',
-              month: '2-digit',
+              month: 'long',
               day: '2-digit',
+              hours24: true,
+              hour: '2-digit',
+              minute: '2-digit',
             })
             }
-            (GMT -4)`)
+            `);
 
           $('#result_number').html(`
             ${
               $.map(resultNumbers, (resultNumber) => {
-                return `<li> ${resultNumber} </li>`
+                return `<li><span> ${resultNumber} </span></li>`
               }).join('')
             }
           `)
@@ -88,61 +156,7 @@
 
 
       $.ajax({
-        url: `http://localhost/miami/public/api/result/current`,
-        method: "GET",
-        dataType: "JSON",
-        success: response => {
-          var result_time;
-          const remaining_date = new Date();
-          remaining_date.setHours(18);
-          remaining_date.setMinutes(00);
-          remaining_date.setSeconds(00);
-          result_remaining_time = remaining_date.getTime();
-          if (Date.now() >= result) {
-            result_time = new Date(result_remaining_time + 86400 * 1000).toLocaleString('eu-ES', {
-              year: 'numeric',
-              month: '2-digit',
-              day: '2-digit',
-              hours24: true,
-              hour: '2-digit',
-              minute: '2-digit',
-              second: '2-digit',
-            });
-          } else {
-            result_time = new Date(result_remaining_time).toLocaleString('eu-ES', {
-              year: 'numeric',
-              month: '2-digit',
-              day: '2-digit',
-              hours24: true,
-              hour: '2-digit',
-              minute: '2-digit',
-              second: '2-digit',
-            });
-          }
-          if (response.data == null) {
-            $("#countdown")
-              .countdown('2020/01/01', function(event) {
-                hours = event.strftime('%H');
-                minutes = event.strftime('%M');
-                seconds = event.strftime('%S');
-                $('#tiles').html("<span>" + hours + "</span><span>" + minutes + "</span><span>" + seconds + "</span>")
-              });
-          } else {
-            // var date = `${new Date(add_day * 1000).getFullYear()}/${String(new Date(add_day * 1000).getMonth()+1).padStart(2, '0')}/${String(new Date(add_day * 1000).getDate()).padStart(2, '0')} ${new Date(add_day * 1000).getHours()}:${String(new Date(add_day * 1000).getMinutes()).padStart(2, '0')}:${String(new Date(add_day * 1000).getSeconds()).padStart(2, '0')}`;
-            $("#countdown")
-              .countdown(result_time, function(event) {
-                hours = event.strftime('%H');
-                minutes = event.strftime('%M');
-                seconds = event.strftime('%S');
-                $('#tiles').html("<span>" + hours + "</span><span>" + minutes + "</span><span>" + seconds + "</span>")
-              });
-          }
-        }
-      })
-
-
-      $.ajax({
-        url: "http://localhost/miami/public/api/result/listhistory?limit=3",
+        url: "http://localhost/fantra2/public/api/result/listhistory?limit=3",
         type: 'GET',
         cache: true,
         success: function(response) {
@@ -150,71 +164,94 @@
           $.each(response.data, function(key, value) {
             weekday = new Date(value.out_at * 1000).toLocaleString(0, {
               weekday: 'short',
-            }).toUpperCase()
+            })
             date = new Date(value.out_at * 1000).toLocaleString(0, {
               day: '2-digit',
             })
             month = new Date(value.out_at * 1000).toLocaleString(0, {
               month: 'short',
-            }).toUpperCase()
+            })
             year = new Date(value.out_at * 1000).toLocaleString(0, {
               year: 'numeric',
             })
-            $('.bg2 .container .row').append("<div class='grid_4 wrap'>\
-          <div class='thumbnail'>\
-            <h3>Winning Numbers <br>" + weekday + ", " + date + " " + month + " " + year + "</h3>\
-            <p>Draw No: <span>#" + counter-- + "</span></p>\
-            <ul class='list'>\
-              <li>" + value.number[0] + "</li>\
-              <li>" + value.number[1] + "</li>\
-              <li>" + value.number[2] + "</li>\
-              <li>" + value.number[3] + "</li>\
-            </ul>\
-          </div>\
+            $('#result-list-only').append("<div class='single-list'>\
+              <div class='light-area'>\
+                <div class='light-area-bottom'>\
+                  <div class='left'>\
+                    <p>Winning Numbers:</p>\
+                    <div class='numbers'>\
+                      <span>" + value.number[0] + "</span>\
+                      <span>" + value.number[1] + "</span>\
+                      <span>" + value.number[2] + "</span>\
+                      <span>" + value.number[3] + "</span>\
+                    </div>\
+                  </div>\
+                  <div class='right'>\
+                    <span>Draw No.</span>\
+                    <h6>#" + counter-- + "</h6>\
+                  </div>\
+                </div>\
+              </div>\
+              <div class='color-area'>\
+                <div class='top'>\
+                  <span>Date</span>\
+                  <h6>" + weekday + ", " + month + " " + date + " " + year + "</h6>\
+                </div>\
+              </div>\
         </div>");
           });
         }
       });
 
       $.ajax({
-        url: "http://localhost/miami/public/api/result/listhistory",
+        url: "http://localhost/fantra2/public/api/result/listhistory",
         type: "GET",
         cache: true,
         success: function(response) {
-          var date = '';
           var counter = response.count;
           $.each(response.data, function(key, value) {
             weekday = new Date(value.out_at * 1000).toLocaleString(0, {
               weekday: 'short',
-            }).toUpperCase()
+            })
             date = new Date(value.out_at * 1000).toLocaleString(0, {
               day: '2-digit',
             })
             month = new Date(value.out_at * 1000).toLocaleString(0, {
               month: 'short',
-            }).toUpperCase()
+            })
             year = new Date(value.out_at * 1000).toLocaleString(0, {
               year: 'numeric',
             })
-            $('#listhistory').append(
-              "<tr>\
-                <td class='c1'>#" + counter-- + "</td>\
-                <td class='c2'>\
-                  <ul class='list'>\
-                  <li>" + value.number[0] + "</li>\
-                  <li>" + value.number[1] + "</li>\
-                  <li>" + value.number[2] + "</li>\
-                  <li>" + value.number[3] + "</li>\
-                  </ul>\
-                </td>\
-                <td><time>" + weekday + ",<br> " + date + "<br> " + month + "<br> " + year + "</time></td>\
-              </tr>"
-            );
-          })
-          var items = $("table.table tbody tr");
+            $('#list-all').append("<div class='single-list'>\
+              <div class='light-area'>\
+                <div class='light-area-bottom'>\
+                  <div class='left'>\
+                    <p>Winning Numbers:</p>\
+                    <div class='numbers'>\
+                      <span>" + value.number[0] + "</span>\
+                      <span>" + value.number[1] + "</span>\
+                      <span>" + value.number[2] + "</span>\
+                      <span>" + value.number[3] + "</span>\
+                    </div>\
+                  </div>\
+                  <div class='right'>\
+                    <span>Draw No.</span>\
+                    <h6>#" + counter-- + "</h6>\
+                  </div>\
+                </div>\
+              </div>\
+              <div class='color-area'>\
+                <div class='top'>\
+                  <span>Date</span>\
+                  <h6>" + weekday + ", " + month + " " + date + " " + year + "</h6>\
+                </div>\
+              </div>\
+        </div>");
+          });
+          var items = $("#list-all .single-list");
           var numItems = response.data.length;
-          var perPage = 5;
-
+          var perPage = 3;
+          
           items.slice(perPage).hide();
 
           $('#pagination-container').pagination({
@@ -232,7 +269,10 @@
 
       });
     });
-  </script> -->
+  </script>
+
+  <script src="{{ asset('guest/js/main_2.js') }}"></script>
+
 
 
 </body>

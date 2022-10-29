@@ -14,7 +14,6 @@ class AuthController extends Controller
 {
     public function login(LoginRequest $request)
     {
-        dd(Hash::make("harusbesar303"));
         $user = User::where('username', $request->username)->first();
 
         if (Hash::check($request->password, $user->password)) {

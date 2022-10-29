@@ -37,116 +37,15 @@
       </div>
     </div>
   </div>
-  <div class="check-number result-page">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 col-md-4">
-          <div class="check-box">
-            <h4 class="title">2. Pick a Date</h4>
-            <div class="form-area">
-              <input type="date">
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-6">
-          <div class="check-box">
-            <h4 class="title">3. Enter Your Number</h4>
-            <div class="form-area input-round-wrapper">
-              <input type="text" class="input-round">
-              <input type="text" class="input-round">
-              <input type="text" class="input-round">
-              <input type="text" class="input-round">
-              <input type="text" class="input-round">
-              <input type="text" class="input-round">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="lottery-result result-page">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <div class="result-list">
-            <div class="single-list">
-              <div class="light-area">
-                <div class="light-area-bottom">
-                  <div class="left">
-                    <p>Winning Numbers:</p>
-                    <div class="numbers">
-                      <span>1</span>
-                      <span>8</span>
-                      <span>2</span>
-                      <span>9</span>
-                    </div>
-                  </div>
-                  <div class="right">
-                    <span>Est. Jackpot</span>
-                    <h6>$116 M Win BTC</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="color-area">
-                <div class="top">
-                  <span>Date</span>
-                  <h6>Wed, Oct 28, 2020</h6>
-                </div>
-              </div>
-            </div>
-            <div class="single-list">
-              <div class="light-area">
-                <div class="light-area-bottom">
-                  <div class="left">
-                    <p>Winning Numbers:</p>
-                    <div class="numbers">
-                      <span>1</span>
-                      <span>8</span>
-                      <span>2</span>
-                      <span>9</span>
-                    </div>
-                  </div>
-                  <div class="right">
-                    <span>Est. Jackpot</span>
-                    <h6>$116 M Win BTC</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="color-area">
-                <div class="top">
-                  <span>Date</span>
-                  <h6>Wed, Oct 28, 2020</h6>
-                </div>
-              </div>
-            </div>
-            <div class="single-list">
-              <div class="light-area">
-                <div class="light-area-bottom">
-                  <div class="left">
-                    <p>Winning Numbers:</p>
-                    <div class="numbers">
-                      <span>1</span>
-                      <span>8</span>
-                      <span>2</span>
-                      <span>9</span>
-                    </div>
-                  </div>
-                  <div class="right">
-                    <span>Est. Jackpot</span>
-                    <h6>$116 M Win BTC</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="color-area">
-                <div class="top">
-                  <span>Date</span>
-                  <h6>Wed, Oct 28, 2020</h6>
-                </div>
-              </div>
-            </div>
+          <div class="result-list" id="list-all">
+
           </div>
           <div class="text-center">
-            <a class="view-all" href="result.html#">Load more </a>
+            <div id="pagination-container"></div>
           </div>
         </div>
       </div>

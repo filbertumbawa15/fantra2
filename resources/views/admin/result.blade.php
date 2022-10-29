@@ -1,73 +1,75 @@
 @extends('admin.layouts.app')
 
 @section('content')
+<div class="content-wrapper">
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
 
-  <!-- Page Heading -->
-  <h1 class="h3 mb-2 text-gray-800">Result</h1>
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Result</h1>
 
-  <!-- DataTales Example -->
-  <div class="card shadow mb-4">
-    <div class="card-body">
-      <div class="table-responsive">
-        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#crudModal" style="background-color:#c6a23f;border-color:#c6a23f;">
-          Add
-        </button>
-        <table class="table table-bordered" id="dataTable" cellspacing="0" style="width: 100%; font-size: 14px;"></table>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal fade" id="crudModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Result</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-body">
+        <div class="table-responsive">
+          <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#crudModal" style="background-color:#c6a23f;border-color:#c6a23f;">
+            Add
           </button>
+          <table class="table table-bordered" id="dataTable" cellspacing="0" style="width: 100%; font-size: 14px;"></table>
         </div>
-        <form id="crudForm" data-action="add">
-          <div class="modal-body">
-            <input type="hidden" name="id">
+      </div>
+    </div>
 
-            <div class="form-group row">
-              <div class="col-12">
-                <label>Number</label>
-                <input type="number" class="form-control" name="number">
+    <!-- Modal -->
+    <div class="modal fade" id="crudModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Result</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form id="crudForm" data-action="add">
+            <div class="modal-body">
+              <input type="hidden" name="id">
+
+              <div class="form-group row">
+                <div class="col-12">
+                  <label>Number</label>
+                  <input type="number" class="form-control" name="number">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-12">
+                  <label>Out at</label>
+                  <input type="datetime" class="form-control datepicker" name="out_at">
+                </div>
               </div>
             </div>
-            <div class="form-group row">
-              <div class="col-12">
-                <label>Out at</label>
-                <input type="datetime" class="form-control datepicker" name="out_at">
-              </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" style="background-color:#c6a23f;border-color:#c6a23f;">Save</button>
             </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" style="background-color:#c6a23f;border-color:#c6a23f;">Save</button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   </div>
+  <!-- /.container-fluid -->
 </div>
-<!-- /.container-fluid -->
 @endsection
 
 @push('page_plugins')
-<script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('vendors/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('vendors/datatables/dataTables.bootstrap4.min.js') }}"></script>
 @endpush
 
 @push('page_custom_scripts')
 <script>
   $(window).ready(function() {
-    const apiUrl = `http://localhost/miami/public/api`
+    const apiUrl = `http://localhost/fantra2/public/api`
     const accessToken = getCookie('access-token')
     let crudModal = $('#crudModal')
 

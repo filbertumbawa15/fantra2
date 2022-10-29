@@ -59,11 +59,45 @@
   <!-- Plugin js for this page -->
   <!-- End plugin js for this page -->
   <!-- inject:js -->
+  <!-- Sweetalert -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="{{ asset('js/off-canvas.js') }}"></script>
   <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
   <script src="{{ asset('js/misc.js') }}"></script>
   <script src="{{ asset('js/settings.js') }}"></script>
   <script src="{{ asset('js/todolist.js') }}"></script>
+  <script src="{{ asset('script.js') }}"></script>
+  <script>
+    $(document).ready(function() {
+      const apiUrl = `http://localhost/fantra2/public/api`
+
+      $('#loginForm').submit(function(event) {
+        event.preventDefault()
+
+        let form = $(this)
+
+        clearErrorMessages(form)
+
+        $.ajax({
+          url: `${apiUrl}/auth/login`,
+          method: 'POST',
+          dataType: 'JSON',
+          data: form.serializeArray(),
+          success: response => {
+            document.cookie = `access-token=${response.token}`
+            document.cookie = `user=${JSON.stringify(response.user)}`
+
+            window.location.href = 'http://localhost/fantra2/public/admin'
+          },
+          error: error => {
+            if (error.status === 422) {
+              setErrorMessages(form, error.responseJSON.errors)
+            }
+          }
+        })
+      })
+    })
+  </script>
   <!-- endinject -->
 </body>
 

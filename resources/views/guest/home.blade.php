@@ -11,25 +11,25 @@
           <div class="col-lg-12">
             <div class="header-item">
               <div class="single-number">
-                <ul>
+                <ul id="result_number">
                   <li>
-                    <span>1</span>
+                    <span></span>
                   </li>
                   <li>
-                    <span>2</span>
+                    <span></span>
                   </li>
                   <li>
-                    <span>3</span>
+                    <span></span>
                   </li>
                   <li>
-                    <span>4</span>
+                    <span></span>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        <p class="text">Sunday 23 October, 07:00 PM</p>
+        <p class="text" id="result_time"></p>
       </div>
     </div>
   </div>
@@ -41,13 +41,14 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <div class="steps">
-          <h1>NEXT RESULT:<br> Monday 24 October, 07:00 PM (GMT -4)</h1>
+        <div class="steps" id="result_datetime">
         </div>
         <div class="time-wrapper">
           <div class="time-counter">
-            <img src="https://pixner.net/fantra/fantra/assets/images/clock.png" alt="">
-            <p class="time-countdown" data-countdown="05/05/2023"></p>
+            <img src='https://pixner.net/fantra/fantra/assets/images/clock.png' alt=''>
+            <div id="countdown">
+              <div id='tiles'></div>
+            </div>
           </div>
         </div>
       </div>
@@ -64,85 +65,10 @@
       <div class="col-lg-12">
         <div class="result-box">
           <h4 class="box-header">Lottery Winning Numbers</h4>
-          <div class="result-list">
-            <div class="single-list">
-              <div class="light-area">
-                <div class="light-area-bottom">
-                  <div class="left">
-                    <p>Winning Numbers:</p>
-                    <div class="numbers">
-                      <span>1</span>
-                      <span>8</span>
-                      <span>2</span>
-                      <span>9</span>
-                    </div>
-                  </div>
-                  <div class="right">
-                    <span>Est. Jackpot</span>
-                    <h6>$116 M Win BTC</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="color-area">
-                <div class="top">
-                  <span>Date</span>
-                  <h6>Wed, Oct 28, 2020</h6>
-                </div>
-              </div>
-            </div>
-            <div class="single-list">
-              <div class="light-area">
-                <div class="light-area-bottom">
-                  <div class="left">
-                    <p>Winning Numbers:</p>
-                    <div class="numbers">
-                      <span>1</span>
-                      <span>8</span>
-                      <span>2</span>
-                      <span>9</span>
-                    </div>
-                  </div>
-                  <div class="right">
-                    <span>Est. Jackpot</span>
-                    <h6>$116 M Win BTC</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="color-area">
-                <div class="top">
-                  <span>Date</span>
-                  <h6>Wed, Oct 28, 2020</h6>
-                </div>
-              </div>
-            </div>
-            <div class="single-list">
-              <div class="light-area">
-                <div class="light-area-bottom">
-                  <div class="left">
-                    <p>Winning Numbers:</p>
-                    <div class="numbers">
-                      <span>1</span>
-                      <span>8</span>
-                      <span>2</span>
-                      <span>9</span>
-                    </div>
-                  </div>
-                  <div class="right">
-                    <span>Est. Jackpot</span>
-                    <h6>$116 M Win BTC</h6>
-                  </div>
-                </div>
-              </div>
-              <div class="color-area">
-                <div class="top">
-                  <span>Date</span>
-                  <h6>Wed, Oct 28, 2020</h6>
-                </div>
-              </div>
-            </div>
+          <div class="result-list" id="result-list-only">
           </div>
           <div class="text-center">
-            <a class="view-all" href="result.html">View All Result ></a>
+            <a class="view-all" href="{{ route('guest.result') }}">View All Result ></a>
           </div>
         </div>
       </div>
