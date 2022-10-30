@@ -85,26 +85,53 @@
       });
 
       $.ajax({
-        url: `http://localhost/fantra2/public/api/result/getcountdown`,
+        url: `http://54.179.27.191/fantra2/public/api/result/getcountdown`,
         method: "GET",
         dataType: "JSON",
         async: true,
         success: response => {
-          let currentResultTime = response.data.out_at
+          var result_time;
+          const remaining_date = new Date();
+          remaining_date.setHours(15);
+          remaining_date.setMinutes(30);
+          remaining_date.setSeconds(00);
+          result_remaining_time = remaining_date.getTime();
+          console.log(result_remaining_time);
+          if (new Date() >= result_remaining_time) {
+            result_time = new Date(result_remaining_time + 86400 * 1000).toLocaleString('eu-ES', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hours24: true,
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+            });
+            console.log("baca atas " + result_time);
+          } else {
+            result_time = new Date(result_remaining_time).toLocaleString('eu-ES', {
+              year: 'numeric',
+              month: '2-digit',
+              day: '2-digit',
+              hours24: true,
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+            });
+            console.log("baca bawah " + result_time);
+          }
 
-          let resultTime = new Date(currentResultTime * 1000).toLocaleString('en-EN');
 
           $("#countdown")
-            .countdown(resultTime, function(event) {
-              days = event.strftime('%d');
+            .countdown(result_time, function(event) {
               hours = event.strftime('%H');
               minutes = event.strftime('%M');
               seconds = event.strftime('%S');
-              $('#tiles').html("<span>" + days + " </span><span class>Days </span><span>" + hours + " : </span><span>" + minutes + " : </span><span>" + seconds + "</span>")
+              $('#tiles').html("<span>" + hours + " : </span><span>" + minutes + " : </span><span>" + seconds + "</span>")
             });
 
           $('#result_datetime').html(`<h1>NEXT RESULT:<br> ${
-            new Date(response.data.out_at * 1000).toLocaleString('en-EN', {
+            new Date(result_time).toLocaleString('en-EN', {
               weekday: 'long',
               year: 'numeric',
               month: 'long',
@@ -114,13 +141,13 @@
               minute: '2-digit',
             })
             }
-            (GMT -4)</h1>`);
+            (GMT +8)</h1>`);
         }
 
       })
 
       $.ajax({
-        url: `http://localhost/miami/public/api/result/current`,
+        url: `http://54.179.27.191/fantra2/public/api/result/current`,
         method: "GET",
         dataType: "JSON",
         success: response => {
@@ -156,7 +183,7 @@
 
 
       $.ajax({
-        url: "http://localhost/fantra2/public/api/result/listhistory?limit=3",
+        url: "http://54.179.27.191/fantra2/public/api/result/listhistory?limit=3",
         type: 'GET',
         cache: true,
         success: function(response) {
@@ -184,6 +211,8 @@
                       <span>" + value.number[1] + "</span>\
                       <span>" + value.number[2] + "</span>\
                       <span>" + value.number[3] + "</span>\
+                      <span>" + value.number[4] + "</span>\
+                      <span>" + value.number[5] + "</span>\
                     </div>\
                   </div>\
                   <div class='right'>\
@@ -204,7 +233,7 @@
       });
 
       $.ajax({
-        url: "http://localhost/fantra2/public/api/result/listhistory",
+        url: "http://54.179.27.191/fantra2/public/api/result/listhistory",
         type: "GET",
         cache: true,
         success: function(response) {
@@ -232,6 +261,8 @@
                       <span>" + value.number[1] + "</span>\
                       <span>" + value.number[2] + "</span>\
                       <span>" + value.number[3] + "</span>\
+                      <span>" + value.number[4] + "</span>\
+                      <span>" + value.number[5] + "</span>\
                     </div>\
                   </div>\
                   <div class='right'>\
@@ -251,7 +282,7 @@
           var items = $("#list-all .single-list");
           var numItems = response.data.length;
           var perPage = 3;
-          
+
           items.slice(perPage).hide();
 
           $('#pagination-container').pagination({

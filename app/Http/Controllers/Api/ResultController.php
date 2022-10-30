@@ -107,14 +107,17 @@ class ResultController extends Controller
 
     public function current()
     {
-        $result = Result::where('out_at', '<=', time())
-            ->orderBy('out_at', 'desc')
+        $result = Result::orderBy('out_at', 'desc')
+            ->orderby('id', 'desc')
             ->first();
 
         return response([
             'data' => $result
         ]);
     }
+
+    // where('out_at', '<=', time())
+    //         ->
 
     public function getCountdown()
     {
@@ -131,11 +134,11 @@ class ResultController extends Controller
     {
         // where('out_at', '<', time())->
         $limit = $_GET['limit'] ?? 0;
-        $count = Result::where('out_at', '<=', time())->count();
+        $count = Result::count();
         if ($limit > 0) {
-            $query = Result::where('out_at', '<=', time())->limit($limit)->orderby('out_at', 'desc')->get();
+            $query = Result::limit($limit)->orderby('out_at', 'desc')->orderby('id', 'desc')->get();
         } else {
-            $query = Result::where('out_at', '<=', time())->orderby('out_at', 'desc')->get();
+            $query = Result::orderby('out_at', 'desc')->orderby('id', 'desc')->get();
         }
 
         return response([
@@ -143,6 +146,10 @@ class ResultController extends Controller
             'count' => $count
         ]);
     }
+
+    //     where('out_at', '<=', time())->
+    // where('out_at', '<=', time())->
+    // where('out_at', '<=', time())->
 
     public function count()
     {

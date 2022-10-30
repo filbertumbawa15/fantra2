@@ -2,75 +2,88 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
+  <!-- Required meta tags-->
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Corona Admin</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="{{ asset('vendors/mdi/css/materialdesignicons.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css') }}">
+  <meta name="description" content="au theme template">
+  <meta name="author" content="Hau Nguyen">
+  <meta name="keywords" content="au theme template">
+
+  <!-- Title Page-->
+  <title>Dashboard</title>
+
+  <!-- Fontfaces CSS-->
+  <link href="{{ asset('css/font-face.css" rel="stylesheet') }}" media="all">
+  <link href="{{ asset('vendors/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/font-awesome-5/css/fontawesome-all.min.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
+
+  <!-- Bootstrap CSS-->
+  <link href="{{ asset('vendors/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
+
+  <!-- Vendors CSS-->
+  <link href="{{ asset('vendors/animsition/animsition.min.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/wow/animate.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/slick/slick.css" rel="stylesheet') }}" media="all">
+  <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" media="all">
   <!-- Daterangepicker -->
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <!-- End Plugin css for this page -->
-  <!-- inject:css -->
-  <!-- endinject -->
-  <!-- Layout styles -->
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  <!-- End layout styles -->
-  <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" />
+
+  <!-- Main CSS-->
+  <link href="{{ asset('css/theme.css') }}" rel="stylesheet" media="all">
+
 </head>
 
-<body>
-  <div class="container-scroller">
+<body class="animsition">
+  <div class="page-wrapper">
 
     @include('admin.layouts._sidebar')
 
 
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-      <!-- End of Sidebar -->
-
+    <!-- PAGE CONTAINER-->
+    <div class="page-container">
 
       @include('admin.layouts._navbar')
 
-      <div class="main-panel">
-
-        @yield('content')
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/bootstrap-admin-template/" target="_blank">Bootstrap admin templates</a> from Bootstrapdash.com</span>
-          </div>
-        </footer>
-      </div>
+      @yield('content')
       <!-- End of Main Content -->
     </div>
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
 
-  <!-- plugins:js -->
-  <script src="{{ asset('vendors/js/vendor.bundle.base.js') }}"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script src="{{ asset('js/off-canvas.js') }}"></script>
-  <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
-  <script src="{{ asset('js/misc.js') }}"></script>
-  <script src="{{ asset('js/settings.js') }}"></script>
-  <script src="{{ asset('js/todolist.js') }}"></script>
-  <script src="{{ asset('script.js') }}"></script>
-  <!-- Sweetalert -->
+  <!-- Jquery JS-->
+  <script src="{{ asset('vendors/jquery-3.2.1.min.js') }}"></script>
+  <!-- Bootstrap JS-->
+  <script src="{{ asset('vendors/bootstrap-4.1/popper.min.js') }}"></script>
+  <script src="{{ asset('vendors/bootstrap-4.1/bootstrap.min.js') }}"></script>
+  <!-- Vendors JS       -->
+  <script src="{{ asset('vendors/slick/slick.min.js') }}">
+  </script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page -->
-  <!-- End custom js for this page -->
+  <script src="{{ asset('vendors/wow/wow.min.js') }}"></script>
+  <script src="{{ asset('vendors/animsition/animsition.min.js') }}"></script>
+  <script src="{{ asset('vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}">
+  </script>
+  <script src="{{ asset('vendors/counter-up/jquery.waypoints.min.js') }}"></script>
+  <script src="{{ asset('vendors/counter-up/jquery.counterup.min.js') }}">
+  </script>
+  <script src="{{ asset('vendors/circle-progress/circle-progress.min.js') }}"></script>
+  <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+  <script src="{{ asset('vendors/chartjs/Chart.bundle.min.js') }}"></script>
+  <script src="{{ asset('vendors/select2/select2.min.js') }}">
+  </script>
+  <script src="{{ asset('script.js') }}"></script>
+
   <!-- Daterangepicker -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+  <!-- Main JS-->
+  <script src="{{ asset('js/main.js') }}"></script>
   <!-- Page level plugins -->
   @stack('page_plugins')
 

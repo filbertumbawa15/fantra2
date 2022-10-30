@@ -11,7 +11,7 @@
 
 <!-- ==========Overlay========== -->
 <div class="overlay"></div>
-<a href="index.html#" class="scrollToTop">
+<a href="{{ route('guest.home') }}" class="scrollToTop">
   <i class="fas fa-angle-up"></i>
 </a>
 <!-- ==========Overlay========== -->
@@ -22,7 +22,7 @@
     <div class="container">
       <div class="header-wrapper">
         <div class="header-top-area-inner">
-          <a href="index.html" class="logo">
+          <a href="{{ route('guest.home') }}" class="logo">
             <img src="{{ asset('guest/images/manilalotto.png') }}" alt="" width="130" height="50">
           </a>
         </div>

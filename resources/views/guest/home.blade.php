@@ -59,7 +59,6 @@
 
 <!-- ==========Lottery-Result-Section========== -->
 <section class="lottery-result">
-  <img class="bg-image" src="{{ asset('guest/images/result-background_2.jpg') }}" alt="">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">

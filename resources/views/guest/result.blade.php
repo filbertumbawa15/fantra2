@@ -37,11 +37,11 @@
       </div>
     </div>
   </div>
-  <div class="lottery-result result-page">
+  <div class="result-page">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <div class="result-list" id="list-all">
+          <div class="result-list" id="list-all" style="position:relative;">
 
           </div>
           <div class="text-center">

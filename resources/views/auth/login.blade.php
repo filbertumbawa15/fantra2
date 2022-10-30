@@ -2,74 +2,105 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
+  <!-- Required meta tags-->
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Corona Admin</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="{{ asset('vendors/mdi/css/materialdesignicons.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('vendors/css/vendor.bundle.base.css') }}">
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <!-- endinject -->
-  <!-- Layout styles -->
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  <!-- End layout styles -->
-  <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}" />
+  <meta name="description" content="au theme template">
+  <meta name="author" content="Hau Nguyen">
+  <meta name="keywords" content="au theme template">
+
+  <!-- Title Page-->
+  <title>Login</title>
+
+  <!-- Fontfaces CSS-->
+  <link href="{{ asset('css/font-face.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/font-awesome-4.7/css/font-awesome.min.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/font-awesome-5/css/fontawesome-all.min.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet" media="all">
+
+  <!-- Bootstrap CSS-->
+  <link href="{{ asset('vendors/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet" media="all">
+
+  <!-- Vendor CSS-->
+  <link href="{{ asset('vendors/animsition/animsition.min.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/wow/animate.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/slick/slick.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/select2/select2.min.css') }}" rel="stylesheet" media="all">
+  <link href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}" rel="stylesheet" media="all">
+
+  <!-- Main CSS-->
+  <link href="{{ asset('css/theme.css') }}" rel="stylesheet" media="all">
+
 </head>
 
-<body>
-  <div class="container-scroller">
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-      <div class="row w-100 m-0">
-        <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-          <div class="card col-lg-4 mx-auto">
-            <div class="card-body px-5 py-5">
-              <h3 class="card-title text-left mb-3">Login</h3>
+<!-- <style>
+  .page-content--bge5 {
+    background: url(images/auth/Login_bg.jpg);
+  }
+</style> -->
+
+<body class="animsition">
+  <div class="page-wrapper">
+    <div class="page-content--bge5">
+      <div class="container">
+        <div class="login-wrap">
+          <div class="login-content">
+            <div class="login-logo">
+              <a href="#">
+                <img src="{{ asset('images/manilalotto.png') }}" alt="CoolAdmin" style="width: auto;height: 100px;">
+              </a>
+            </div>
+            <div class="login-form">
               <form id="loginForm" method="POST">
                 @csrf
                 <div class="form-group">
                   <label>Username</label>
-                  <input type="text" class="form-control p_input" name="username">
+                  <input class="au-input au-input--full" type="text" name="username" placeholder="Username">
                 </div>
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" class="form-control p_input" name="password">
+                  <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
                 </div>
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
-                </div>
+                <button type="submit" class="au-btn au-btn--block au-btn--green m-b-20">sign in</button>
               </form>
             </div>
           </div>
         </div>
-        <!-- content-wrapper ends -->
       </div>
-      <!-- row ends -->
     </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
 
-  <!-- plugins:js -->
-  <script src="{{ asset('vendors/js/vendor.bundle.base.js') }}"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <!-- Sweetalert -->
+  </div>
+
+  <!-- Jquery JS-->
+  <script src="{{ asset('vendors/jquery-3.2.1.min.js') }}"></script>
+  <!-- Bootstrap JS-->
+  <script src="{{ asset('vendors/bootstrap-4.1/popper.min.js') }}"></script>
+  <script src="{{ asset('vendors/bootstrap-4.1/bootstrap.min.js') }}"></script>
+  <!-- Vendors JS       -->
+  <script src="{{ asset('vendors/slick/slick.min.js') }}">
+  </script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="{{ asset('js/off-canvas.js') }}"></script>
-  <script src="{{ asset('js/hoverable-collapse.js') }}"></script>
-  <script src="{{ asset('js/misc.js') }}"></script>
-  <script src="{{ asset('js/settings.js') }}"></script>
-  <script src="{{ asset('js/todolist.js') }}"></script>
+  <script src="{{ asset('vendors/wow/wow.min.js') }}"></script>
+  <script src="{{ asset('vendors/animsition/animsition.min.js') }}"></script>
+  <script src="{{ asset('vendors/bootstrap-progressbar/bootstrap-progressbar.min.js') }}">
+  </script>
+  <script src="{{ asset('vendors/counter-up/jquery.waypoints.min.js') }}"></script>
+  <script src="{{ asset('vendors/counter-up/jquery.counterup.min.js') }}">
+  </script>
+  <script src="{{ asset('vendors/circle-progress/circle-progress.min.js') }}"></script>
+  <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+  <script src="{{ asset('vendors/chartjs/Chart.bundle.min.js') }}"></script>
+  <script src="{{ asset('vendors/select2/select2.min.js') }}">
+  </script>
   <script src="{{ asset('script.js') }}"></script>
+
+  <!-- Main JS-->
+  <script src="js/main.js"></script>
   <script>
     $(document).ready(function() {
-      const apiUrl = `http://localhost/fantra2/public/api`
+      const apiUrl = `http://54.179.27.191/fantra2/public/api`
 
       $('#loginForm').submit(function(event) {
         event.preventDefault()
@@ -87,7 +118,7 @@
             document.cookie = `access-token=${response.token}`
             document.cookie = `user=${JSON.stringify(response.user)}`
 
-            window.location.href = 'http://localhost/fantra2/public/admin'
+            window.location.href = 'http://54.179.27.191/fantra2/public/admin'
           },
           error: error => {
             if (error.status === 422) {
@@ -98,7 +129,8 @@
       })
     })
   </script>
-  <!-- endinject -->
+
 </body>
 
 </html>
+<!-- end document-->

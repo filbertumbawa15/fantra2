@@ -27,7 +27,7 @@ class UpdateResultRequest extends FormRequest
     public function rules()
     {
         return [
-            'number' => 'required|digits:4|numeric',
+            'number' => 'required|digits:6|numeric',
             'out_at' => [
                 'required',
                 'date_format:m/d/Y H:i',

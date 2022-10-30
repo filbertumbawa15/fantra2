@@ -2,29 +2,41 @@
 
 @section('content')
 
-<div class="content-wrapper">
-  <div class="row">
-    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-9">
-              <div class="d-flex align-items-center align-self-start">
-                <h3 class="mb-0" id="result-count"></h3>
+<!-- MAIN CONTENT-->
+<div class="main-content">
+  <div class="section__content section__content--p30">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="overview-wrap">
+            <h2 class="title-1">Dashboard</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row m-t-25">
+        <div class="col-sm-6 col-lg-3">
+          <div class="overview-item overview-item--c3">
+            <div class="overview__inner">
+              <div class="overview-box clearfix">
+                <div class="icon">
+                  <i class="zmdi zmdi-calendar-note"></i>
+                </div>
+                <div class="text">
+                  <h2 id="result-count"></h2>
+                  <span>Total Result</span>
+                </div>
               </div>
-            </div>
-            <div class="col-3">
-              <div class="icon icon-box-success ">
-                <span class="mdi mdi-arrow-top-right icon-item"></span>
+              <div class="overview-chart">
+                <canvas id="widgetChart3"></canvas>
               </div>
             </div>
           </div>
-          <h6 class="text-muted font-weight-normal">Total Result</h6>
         </div>
       </div>
     </div>
   </div>
 </div>
+<!-- END MAIN CONTENT-->
 @endsection
 
 @push('page_custom_scripts')
@@ -32,14 +44,14 @@
   $(window).ready(function() {
     const accessToken = getCookie('access-token')
     $.ajax({
-      url: 'http://localhost/fantra2/public/api/result/count',
+      url: 'http://54.179.27.191/fantra2/public/api/result/count',
       type: 'POST',
       cache: true,
       headers: {
         "Authorization": `Bearer ${accessToken}`,
       },
       success: function(response) {
-        $('#result-count').append(response.data);
+        $('h2#result-count').append(response.data);
       }
     })
   });
